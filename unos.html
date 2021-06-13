@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <title>Unos</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-light bg-white">
+            <div class="container">
+              <div class="navbar-header">
+                <a class="navbar-brand" href="index.php"><img src="img/logo.png" alt="" width="10%" height=""></a>
+                
+              </div>
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="index.php">Home</a></li>
+                <li><a href="kategorija.php?kategorija=politik">Politik</a></li>
+                <li><a href="kategorija.php?kategorija=gesundheit">Gesundheit</a></li>
+                <li><a href="administracija.php">Administracija</a></li>
+                <li><a href="unos.html">Unos Vijesti</a></li>
+              </ul>
+            </div>
+          </nav> 
+    </header>
+
+    <main class="container">
+    <div>
+        <form enctype="multipart/form-data" method="POST" action="skripta.php" name="unos_vijesti">
+            <label for="naslov">Naslov vijesti:</label><br>
+            <input type="text" id="naslov" name="naslov" autofocus>
+            <span id="poruka_nas"></span><br><br>
+
+            <label for="sazetak">Kratki sažetak:</label><br>
+            <textarea id="sazetak" name="sazetak" rows="10" cols="50"></textarea>
+            <span id="poruka_saz"></span><br><br>
+            
+            <label for="sadrzaj">Sadržaj:</label><br>
+            <textarea id="sadrzaj" name="sadrzaj" rows="10" cols="50"></textarea>
+            <span id="poruka_sad"></span><br><br>
+            
+            <label for="kategorija">Kategorija:</label>
+            <select id="kategorija" name="kategorija">
+                <option value="" disable selected>Odabir kategorije</option>
+                <option value="politik">politik</option>
+                <option value="gesundheit">gesundheit</option>
+            </select>
+            <span id="poruka_kat"></span><br><br>
+            
+            <label for="slika">Unesite sliku:</label><br>
+            <input type="file" name="slika" id="slika" accept="image/jpg,image/png,image/jpeg">
+            <span id="poruka_sli"></span><br><br>
+            
+            <label for="prikaz">Spremiti u arhivu: </label>
+            <input type="checkbox" name="arhiva">
+            <span id="poruka_arh"></span><br><br>
+            
+            <button type="reset" value="Poništi">Poništi</button>
+            <button type="submit" id="prihvati" name="prihvati" value="Prihvati">Prihvati</button>
+        </form>
+        <script type="text/javascript">
+            document.getElementById('prihvati').onclick = function(event){
+                var slanje_forme = true;
+    
+                var poljeNas = document.getElementById("naslov");
+                var Nas = poljeNas.value;
+                if(Nas.length < 5 || Nas.length > 100){
+                    slanje_forme = false;
+                    poljeNas.style.border = "1px solid red";
+                    document.getElementById("poruka_nas").innerHTML = "<br>Naslov treba imati između 5 i 100 znakova!";
+                }else{
+                    poljeNas.style.border ="1px solid black";
+                    document.getElementById("poruka_nas").innerHTML = "";
+                };
+    
+                var poljeSaz = document.getElementById("sazetak");
+                var Saz = poljeSaz.value;
+                if(Saz.length < 10 || Saz.length > 300){
+                    slanje_forme = false;
+                    poljeSaz.style.border = "1px solid red";
+                    document.getElementById("poruka_saz").innerHTML = "<br>Sazetak treba imati između 10 i 300 znakova!";
+                }else{
+                    poljeSaz.style.border ="1px solid black";
+                    document.getElementById("poruka_saz").innerHTML = "";
+                };
+    
+                var poljeSad = document.getElementById("sadrzaj");
+                var Sad = poljeSad.value;
+                if(Sad.length == 0){
+                    slanje_forme = false;
+                    poljeSad.style.border = "1px solid red";
+                    document.getElementById("poruka_sad").innerHTML = "<br>Treba se unesti sadržaj!";
+                }else{
+                    poljeSad.style.border ="1px solid black";
+                    document.getElementById("poruka_sad").innerHTML = "";
+                };
+    
+                var poljeKat = document.getElementById("kategorija");
+                if(poljeKat.selectedIndex == 0){
+                    slanje_forme = false;
+                    poljeKat.style.border = "1px solid red";
+                    document.getElementById("poruka_kat").innerHTML = "<br>Treba se odabrati kategorija!";
+                }else{
+                    poljeKat.style.border ="1px solid black";
+                    document.getElementById("poruka_kat").innerHTML = "";
+                };
+    
+                var poljeSli = document.getElementById("slika");
+                var Sli = poljeSli.value;
+                if(Sli.length == 0){
+                    slanje_forme = false;
+                    poljeSli.style.border = "1px solid red";
+                    document.getElementById("poruka_sli").innerHTML = "<br>Treba se unesti slika!";
+                }else{
+                    poljeSad.style.border ="1px solid black";
+                    document.getElementById("poruka_sli").innerHTML = "";
+                }
+                if(slanje_forme != true) {
+                    event.preventDefault();
+                };
+            }
+        </script>
+    </div>
+    </main>
+    <footer><p>Nachrichten vom 17.05.2019 | stern.de GmbH | Home</p></footer>
+</body>
+</html>

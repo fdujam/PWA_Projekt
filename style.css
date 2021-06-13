@@ -1,0 +1,51 @@
+*{
+    margin:0;
+    padding: 0;
+}
+main{
+    width: 100%
+}
+section .col {
+    width: 30%;
+    float: left;
+    padding:0 10px;
+    text-align: center;
+}
+article img{
+    width: 100%;
+}
+
+footer{
+    text-align: center;
+    position:relative;
+    width:100%;
+    bottom:0;
+    padding:30px;
+    font-size:11px;
+    margin-top:50px;
+}
+a{
+    color:black;
+    font-weight: bold;
+}
+a p{
+    color:black;
+    font-weight: bold;
+}
+h6{
+    color:red;
+}
+form{
+    margin:0 auto;
+    width: 800px;
+}
+.form-item{
+    margin:0 auto;
+    width: 500px;
+}
+p{
+    overflow-wrap: break-word;
+}
+.slk{
+    width: 100%;
+}
